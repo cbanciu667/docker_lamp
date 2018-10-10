@@ -1,0 +1,20 @@
+web:
+  build: ./.docker/apache
+  links:
+    - database
+  ports:
+   - "8080:80"
+   - "8443:443"
+  volumes:
+   - ./code:/var/www/html
+   - ./.docker/logs/apache2:/var/logs/apache2
+
+database:
+  image: mysql:5.7.17
+  environment:
+    MYSQL_ROOT_PASSWORD: rootpassword
+    MYSQL_DATABASE: dbname
+    MYSQL_USER: dbuser
+    MYSQL_PASSWORD: userpassword
+  volumes:
+    - ./.docker/data/mysql:/var/lib/mysql
