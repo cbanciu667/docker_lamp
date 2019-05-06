@@ -1,5 +1,5 @@
 web:
-  build: ./.docker/apache
+  build: ./docker/apache
   links:
     - database
   ports:
